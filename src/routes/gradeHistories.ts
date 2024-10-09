@@ -3,7 +3,7 @@ import { getGradeHistories } from '../controllers/gradeHistories';
 
 const router = express.Router();
 
-router.get('/gradeHistories', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const gradeHistories = await getGradeHistories();
     res.status(200).json(gradeHistories);
