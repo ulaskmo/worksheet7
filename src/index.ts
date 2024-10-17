@@ -1,16 +1,19 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import { connectToDatabase } from './database';
-import userRoutes from './routes/users';
-import gradeHistoriesRouter from './routes/gradeHistories';
+import express from 'express'; // Import express to create the server
+import dotenv from 'dotenv'; // For loading environment variables
+import { connectToDatabase } from './database'; // Import database connection function
+import userRoutes from './routes/users'; // Import user routes
+import gradeHistoriesRouter from './routes/gradeHistories'; // Import grade histories routes
 
-dotenv.config();
-const app = express();
-const PORT = process.env.PORT || 3000;
+dotenv.config(); // Load environment variables
+const app = express(); // Initialize express app
+const PORT = process.env.PORT || 3000; // Get the port from environment variables or default to 3000
 
-app.use(express.json());
-app.use('/api/v1/users', userRoutes);
+app.use(express.json()); // Middleware to parse JSON
+app.use('/api/v1/users', userRoutes); // User routes
 app.use('/api/v1/gradeHistories', gradeHistoriesRouter);
+
+// Log server start details
+console.log('Starting server...');
 
 connectToDatabase().then(() => {
   app.listen(PORT, () => {
@@ -19,4 +22,3 @@ connectToDatabase().then(() => {
 }).catch((error) => {
   console.error('Failed to start server due to database connection error:', error);
 });
-
