@@ -11,6 +11,12 @@ x-api-key: blahblah
   "email": "jdoe123@gmail.com"
 }
 
+@baseuri = https://worksheet7.onrender.com
+
+###
+
+GET {{baseuri}}/api/v1/users
+
 ###
 ### POST Request for a contact 
 ## Expected result is to create a new user
